@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
@@ -27,8 +29,8 @@ class Network {
     response = await http.get(Uri.parse(url));
 
     if (response.statusCode == 200) {
-      print(response.body);
-      return response.body;
+      // print(response.body[0]);
+      return json.decode(response.body);
     } else {
       print(response.statusCode);
     }

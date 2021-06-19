@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 
 import 'jsonMap.dart';
 
@@ -15,6 +16,7 @@ class _JsonParsingSimpleState extends State<JsonParsingSimple> {
     // TODO: implement initState
     super.initState();
     data = getData();
+    data.then((value) => print(value[0]['title']));
   }
 
   @override
@@ -25,7 +27,18 @@ class _JsonParsingSimpleState extends State<JsonParsingSimple> {
           title: Text("Json Parsing"),
           centerTitle: true,
         ),
-        body: Container(),
+        body: Container(
+          alignment: Alignment.center,
+          child: FutureBuilder(
+            future: getData(),
+            builder: (context, AsyncSnapshot snapshot) {
+              if (snapshot.hasData) {
+                return createListView(context, snapshot.data);
+              }
+              return CircularProgressIndicator();
+            },
+          ),
+        ),
       ),
     );
   }
@@ -38,5 +51,32 @@ class _JsonParsingSimpleState extends State<JsonParsingSimple> {
     data = network.fetchData();
 
     return data;
+  }
+
+  Widget createListView(BuildContext context, List data) {
+    return Container(
+        child: ListView.builder(
+            itemCount: data.length,
+            itemBuilder: (context, int i) {
+              return Column(
+                children: <Widget>[
+                  Divider(
+                    height: 0.5,
+                  ),
+                  ListTile(
+                      title: Text("${data[i]["title"]}"),
+                      subtitle: Text("${data[i]["body"]}"),
+                      leading: Column(
+                        children: <Widget>[
+                          CircleAvatar(
+                            backgroundColor: Colors.black26,
+                            radius: 23,
+                            child: Text("${data[i]["userId"]}"),
+                          )
+                        ],
+                      ))
+                ],
+              );
+            }));
   }
 }
