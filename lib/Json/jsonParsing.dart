@@ -11,13 +11,13 @@ class JsonParsingSimple extends StatefulWidget {
 class _JsonParsingSimpleState extends State<JsonParsingSimple> {
   late Future data;
 
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-    data = getData();
-    data.then((value) => print(value[0]['title']));
-  }
+  // @override
+  // void initState() {
+  //   // TODO: implement initState
+  //   super.initState();
+  //   data = getData();
+  //   data.then((value) => print(value[0]['title']));
+  // }
 
   @override
   Widget build(BuildContext context) {
