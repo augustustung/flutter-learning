@@ -1,3 +1,6 @@
+import 'package:flutter/material.dart';
+import 'package:learning/models/question.dart';
+
 //quote app
 /*
 class Wisdom extends StatefulWidget {
@@ -245,7 +248,6 @@ class MyHomePage extends StatelessWidget {
 } */
 
 //Quizz app
-/*
 class QuizzApp extends StatefulWidget {
   @override
   _QuizzAppState createState() => _QuizzAppState();
@@ -389,4 +391,3 @@ class _QuizzAppState extends State<QuizzApp> {
     });
   }
 }
-*/

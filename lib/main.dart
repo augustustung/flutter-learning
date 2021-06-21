@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:learning/Json/jsonParsing.dart';
+import 'UI/store.dart';
 
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    home: JsonParsingSimple(),
+    home: QuizzApp(),
   ));
 }
