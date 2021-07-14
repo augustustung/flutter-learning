@@ -1,10 +1,29 @@
 import 'package:flutter/material.dart';
-import 'Json/Jsonmap.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 void main() {
   runApp(MaterialApp(
     home: JsonParsingSimple(),
   ));
+}
+
+class Network {
+  final String url;
+
+  Network(this.url);
+
+  Future fetchData() async {
+    http.Response response;
+    response = await http.get(Uri.parse(url));
+
+    if (response.statusCode == 200) {
+      // print(response.body[0]);
+      return json.decode(response.body);
+    } else {
+      print(response.statusCode);
+    }
+  }
 }
 
 class JsonParsingSimple extends StatefulWidget {
